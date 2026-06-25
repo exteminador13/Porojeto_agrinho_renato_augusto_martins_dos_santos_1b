@@ -1,77 +1,47 @@
-// MODO ESCURO
-
 const darkBtn = document.getElementById("darkModeBtn");
 
-darkBtn.addEventListener("click", () => {
-    document.body.classList.toggle("dark");
-});
-
-// GRaFICO
-
-const ctx = document
-.getElementById("emissionChart");
-
-new Chart(ctx, {
-    type: "line",
-    data: {
-        labels: [
-            "2018",
-            "2019",
-            "2020",
-            "2021",
-            "2022",
-            "2023"
-        ],
-        datasets: [{
-            label: "Emissoes CO",
-            data: [32,34,30,35,37,39],
-            borderColor: "green",
-            borderWidth: 3,
-            fill: false
-        }]
-    }
-});
-
-// SIMULADOR
-
-function calcularImpacto(){
-
-    let km =
-    document.getElementById("km").value;
-
-    let co2 = km * 0.21 * 52;
-
-    document.getElementById("resultado")
-    .innerHTML = `
-        Sua emissao anual estimada e
-        <b>${co2.toFixed(2)} kg de CO</b>.
-        <br><br>
-        Se reduzir 30% dos deslocamentos,
-        economizara
-        <b>${(co2*0.3).toFixed(2)} kg</b>
-        por ano.
-    `;
+if (darkBtn) {
+    darkBtn.addEventListener("click", () => {
+        document.body.classList.toggle("dark");
+    });
 }
 
-// LEITURA DE VOZ
+const canvas = document.getElementById("emissionChart");
 
-document
-.getElementById("voiceBtn")
-.addEventListener("click", () => {
+if (canvas) {
+    new Chart(canvas, {
+        type: "line",
+        data: {
+            labels: ["2018", "2019", "2020", "2021", "2022", "2023"],
+            datasets: [{
+                label: "Emissoes CO2",
+                data: [32, 34, 30, 35, 37, 39],
+                borderColor: "green",
+                borderWidth: 3
+            }]
+        }
+    });
+}
 
-    const texto = `
-    Dioxido de carbono atual:
-    420 partes por milhao.
-    Temperatura global:
-    1 virgula 2 graus Celsius.
-    Desmatamento:
-    15 mil quilometros quadrados.
-    `;
+function calcularImpacto() {
+    const km = Number(document.getElementById("km").value);
+    const co2 = km * 0.21 * 52;
 
-    const fala =
-    new SpeechSynthesisUtterance(texto);
+    document.getElementById("resultado").innerHTML =
+        "Sua emissao anual estimada e <b>" +
+        co2.toFixed(2) +
+        " kg de CO2</b>";
+}
 
-    fala.lang = "pt-BR";
+const voiceBtn = document.getElementById("voiceBtn");
 
-    speechSynthesis.speak(fala);
-});
+if (voiceBtn) {
+    voiceBtn.addEventListener("click", () => {
+        const fala = new SpeechSynthesisUtterance(
+            "Dioxido de carbono atual 420 partes por milhao"
+        );
+
+        fala.lang = "pt-BR";
+        speechSynthesis.speak(fala);
+    });
+}
