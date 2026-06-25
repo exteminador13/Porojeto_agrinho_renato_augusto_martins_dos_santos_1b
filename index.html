@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoTex 2026</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<header>
+  <h1>🌱 EcoTex 2026</h1>
+  <p>Dados sustentáveis de 2026 até Maio</p>
+</header>
+
+<nav>
+  <button onclick="abrir('painel')">Painel</button>
+  <button onclick="abrir('dados')">Dados</button>
+  <button onclick="abrir('simulador')">Simulador</button>
+</nav>
+
+<main>
+
+<section id="painel" class="secao ativo">
+  <h2>🌍 Painel geral</h2>
+  <p>Impacto ambiental monitorado de 2026 até Maio.</p>
+
+  <div class="card">
+    <h3>Total de CO₂ evitado</h3>
+    <p id="total"></p>
+  </div>
+</section>
+
+<section id="dados" class="secao">
+  <h2>📊 Dados mensais</h2>
+  <ul id="lista"></ul>
+</section>
+
+<section id="simulador" class="secao">
+  <h2>🧪 Simulador</h2>
+
+  <input type="number" id="roupas" placeholder="Roupas reutilizadas no mês">
+  <button onclick="simular()">Calcular impacto</button>
+
+  <p id="resultado"></p>
+</section>
+
+</main>
+
+<footer>
+  <p>EcoTex © 2026</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
